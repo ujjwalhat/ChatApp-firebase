@@ -6,7 +6,14 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import upload from "../../lib/upload";
 
 const Login = () => {
@@ -35,8 +42,9 @@ const Login = () => {
 
     // VALIDATE INPUTS
     if (!username || !email || !password)
-      return toast.warn("Please enter inputs!");
-    if (!avatar.file) return toast.warn("Please upload an avatar!");
+      return toast.warn("Please enter inputs!") && setLoading(false);
+    if (!avatar.file)
+      return toast.warn("Please upload an avatar!") && setLoading(false);
 
     // VALIDATE UNIQUE USERNAME
     const usersRef = collection(db, "users");
@@ -44,6 +52,7 @@ const Login = () => {
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
       return toast.warn("Select another username");
+      setLoading(false);
     }
 
     try {
@@ -81,6 +90,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      window.location.reload();
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -103,8 +113,12 @@ const Login = () => {
       <div className="item">
         <h2>Create an Account</h2>
         <form onSubmit={handleRegister}>
-        <label htmlFor="file" style={{ opacity: avatar.url ? 1 : 0.6 }}>
-        <img src={avatar.url || "./avatar.png"} alt="" />
+          <label htmlFor="file" style={{ opacity: avatar.url ? 1 : 0.6 }}>
+            <img
+              src={avatar.url || "./avatar.png"}
+              alt=""
+              style={{ opacity: avatar.url ? 1 : 0.6 }}
+            />
             Upload an image
           </label>
           <input

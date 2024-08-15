@@ -33,6 +33,10 @@
         span {
           font-size: 18px;
           font-weight: bold;
+          max-width: 200px; /* Set max-width */
+          white-space: nowrap; /* Prevent text wrapping */
+          overflow: hidden; /* Hide overflow */
+          text-overflow: ellipsis; /* Add ellipsis (...) */
         }
 
         p {

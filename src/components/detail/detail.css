@@ -15,13 +15,25 @@
       border-radius: 50%;
       object-fit: cover;
     }
-  }
-  font-size: 15px;
 
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      max-width: 180px; /* Set max-width */
+      white-space: nowrap; /* Prevent text wrapping */
+      overflow: hidden; /* Hide overflow */
+      text-overflow: ellipsis; /* Add ellipsis (...) */
+      text-align: center;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #a5a5a5;
+    }
+  }
 
   .info {
-    
-
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -30,17 +42,14 @@
 
     .option {
       font-size: 15px;
-      
 
       .title {
-        
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 15px;
 
         img {
-          
           width: 30px;
           height: 30px;
           background-color: rgba(17, 25, 40, 0.3);
@@ -49,7 +58,6 @@
           cursor: pointer;
         }
       }
-      font-size: 15px;
 
       .photos {
         font-size: 15px;
@@ -95,6 +103,7 @@
         }
       }
     }
+
     button {
       padding: 7.5px;
       background-color: rgba(230, 74, 105, 0.553);
@@ -107,9 +116,8 @@
         background-color: rgba(220, 20, 60, 0.796);
       }
 
-      &.logout{
+      &.logout {
         padding: 7.5px;
-      
         background-color: #1a73e8;
       }
     }
